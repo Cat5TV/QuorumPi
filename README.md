@@ -15,4 +15,4 @@ Documentation will come in time, but it's as simple as this:
 - Do the same again, but this time enter the IP address of your QuorumPi server as well as the password you created while activating it,
 - Now, run this command on all other servers on your cluster (as root): `apt update && apt -y install corosync-qdevice && pvecm qdevice setup <IP of QuorumPi> -f`
 
-You don't need to build it yourself. Instead, download the ready-to-deploy image from https://drive.google.com/file/d/1EFLabdQOiJ4gtEZNoe3EgxWI5o9RNgr-/view?usp=sharing
+You don't need to build it yourself. Instead, download the ready-to-deploy image for Raspberry Pi from https://drive.google.com/file/d/1EFLabdQOiJ4gtEZNoe3EgxWI5o9RNgr-/view?usp=sharing
