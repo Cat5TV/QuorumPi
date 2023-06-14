@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Install base set of applications
+apt update
+apt -y install corosync-qnetd corosync-qdevice
+apt -y install ntp
+apt -y install dialog
+##################################
+
+# Set the hostname
+hostname=proxmox-quorum
+hn=$(/bin/hostname)
+printf "Changing Hostname... "
+/bin/sed -i -- 's/'"$hn"'/'"$hostname"'/g' /etc/hosts
+/bin/sed -i -- 's/'"$hn"'/'"$hostname"'/g' /etc/hostname
+hostnamectl set-hostname $hostname
+echo Done.
+echo Change will take effect at next reboot.
+##################
+
+# Setup the default user
+userpass=baldnerd
+
+# Create default user
+adduser --disabled-password --gecos "" $userpass
+
+# Add to sudoers and disable root login if that's successful
+# root login will be required for Quorum, however we want the
+# user to set this password so we don't have a generic one
+# offering root elevation on user networks.
+usermod -aG sudo $userpass && passwd -l root
+
+# Set the user password
+echo -e "${userpass}\n${userpass}" | passwd $userpass >/tmp/init 2>&1
+
+echo "Reconnect as ${userpass}"
+
+# Delete any non-root user and remove their home folder (eg: pi)
+userdel -f -r pi
+
+############################
+
+# Create MOTD
+cp -f motd /etc/motd
+
+# Add the activate script to path
+cp -f activate /usr/local/bin/activate
+chmod +x /usr/local/bin/activate

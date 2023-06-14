@@ -1,0 +1,25 @@
+#!/bin/bash
+
+dialog --backtitle "QuorumPi" \
+--title "Activate Quorum Server" \
+--msgbox "Welcome to QuorumPi.\n\nThis little Raspberry Pi server will provide quorum to an even-numbered Proxmox cluster." 10 30
+
+while [[ $password == '' ]] || [[ $password != $password2 ]]
+do
+  if [[ $password != '' ]]; then
+    dialog --backtitle "QuorumPi" --msgbox "Passwords didn't match. Try again." 10 30
+  fi
+  password=$(dialog --no-cancel --backtitle "QuorumPi" --clear --insecure --passwordbox "Set a strong password:" 10 30 3>&1- 1>&2- 2>&3-)
+  password2=$(dialog --no-cancel --backtitle "QuorumPi" --clear --insecure --passwordbox "Enter the password again:" 10 30 3>&1- 1>&2- 2>&3-)
+done
+
+# Change the baldnerd user password (for added security)
+echo -e "${password}\n${password}" | passwd baldnerd >/dev/null 2>&1
+# Set the root password (which allows quorum to connect via SSH)
+echo -e "${password}\n${password}" | passwd root >/dev/null 2>&1
+
+dialog --backtitle "QuorumPi" \
+--title "Activated!" \
+--msgbox "You're all set! Please proceed with adding this QuorumPi to your Proxmox cluster." 10 30
+
+clear
