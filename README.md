@@ -7,6 +7,7 @@ More information about how this works is available [in the Proxmox documentation
 
 Documentation will come in time, but it's as simple as this:
 - Flash the image and boot your ethernet-connected Raspberry Pi (DO NOT use WiFi),
+- Add your newly booted QuorumPi device to your DHCP server as a reservation so the IP address never changes (or otherwise set a static IP),
 - SSH to your Raspberry Pi. Login: `baldnerd` Password: `baldnerd`
 - Type: `sudo activate` and follow the prompts,
 - Create your cluster as normal in Proxmox,
