@@ -30,6 +30,9 @@ adduser --disabled-password --gecos "" $userpass
 # offering root elevation on user networks.
 usermod -aG sudo $userpass && passwd -l root
 
+# Allow root to login later
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config.d/allow_root.conf
+
 # Set the user password
 echo -e "${userpass}\n${userpass}" | passwd $userpass >/tmp/init 2>&1
 
