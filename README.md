@@ -8,8 +8,8 @@ Documentation will come in time, but it's as simple as this:
 - SSH to your Raspberry Pi. Login: `baldnerd` Password: `baldnerd`
 - Type: `sudo activate` and follow the prompts,
 - Create your cluster as normal in Proxmox,
-- Copy the join information,
-- Click `Join Cluster` and paste the join information. Enter the IP address of your QuorumPi server as well as the password you created while activating it,
+- Copy the join information, click `Join Cluster` and paste the join information, enter the IP of the next server in your custer to add it to the cluster,
+- Do the same again, but this time enter the IP address of your QuorumPi server as well as the password you created while activating it,
 - Now, run this command on all other servers on your cluster (as root): `apt update && apt -y install corosync-qdevice && pvecm qdevice setup <IP of QuorumPi> -f`
 
 You don't need to build it yourself. Instead, download the ready-to-deploy image from https://drive.google.com/file/d/1EFLabdQOiJ4gtEZNoe3EgxWI5o9RNgr-/view?usp=sharing
