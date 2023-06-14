@@ -1,7 +1,9 @@
 # QuorumPi
-Proxmox Quorum server for Raspberry Pi
+Proxmox Quorum server (QDevice) for Raspberry Pi
 
 This tool allows you to boot up a Raspberry Pi single board computer to provide quorum to a Proxmox cluster containing an even number of servers. Proxmox requires an odd number of servers for High Availability clusters (HA) so QuorumPi provides quorum without the need of an odd server (for example, you can now have HA with only 2 servers).
+
+More information about how this works is available [in the Proxmox documentation](https://pve.proxmox.com/wiki/Cluster_Manager#_corosync_external_vote_support).
 
 Documentation will come in time, but it's as simple as this:
 - Flash the image and boot your ethernet-connected Raspberry Pi (DO NOT use WiFi),
