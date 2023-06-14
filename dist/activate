@@ -4,6 +4,12 @@ dialog --backtitle "QuorumPi by Robbie Ferguson" \
 --title "Activate Quorum Server" \
 --msgbox "Welcome to QuorumPi.\n\nThis little Raspberry Pi server will provide quorum to an even-numbered Proxmox cluster." 10 30
 
+if [[ $EUID -ne 0 ]]; then
+  clear
+  echo "ERROR: No root access. You need to run: sudo activate" 2>&1
+  exit 1
+fi
+
 while [[ $password == '' ]] || [[ $password != $password2 ]]
 do
   if [[ $password != '' ]]; then
