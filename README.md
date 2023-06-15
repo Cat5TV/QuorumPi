@@ -1,5 +1,4 @@
-# QuorumPi
-Proxmox Quorum server (QDevice) for Raspberry Pi
+# QuorumPi - Proxmox Quorum server (QDevice) for Raspberry Pi
 
 You don't need to build it yourself! Download the ready-to-deploy image for Raspberry Pi from https://drive.google.com/file/d/1EFLabdQOiJ4gtEZNoe3EgxWI5o9RNgr-/view?usp=sharing
 
